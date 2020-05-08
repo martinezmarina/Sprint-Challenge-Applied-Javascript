@@ -17,3 +17,61 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function carouselCreator(){
+
+  const carouselDiv = document.createElement('div')
+  const carouselLeftButton = document.createElement('div')
+  const firstImage = document.createElement('img')
+  const secondImage = document.createElement('img')
+  const thirdImage = document.createElement('img')
+  const forthImage = document.createElement('img')
+  const carouselRightButton = document.createElement('div')
+
+  carouselDiv.classList.add("carousel")
+  carouselLeftButton.classList.add("left-button")
+  firstImage.src = "./assets/carousel/mountains.jpeg"
+  secondImage.src = "./assets/carousel/computer.jpeg"
+  thirdImage.src = "./assets/carousel/trees.jpeg"
+  forthImage.src = "./assets/carousel/turntable.jpeg"
+  carouselRightButton.classList.add("right-button")
+
+  carouselDiv.appendChild(carouselLeftButton)
+  carouselDiv.appendChild(firstImage)
+  carouselDiv.appendChild(secondImage)
+  carouselDiv.appendChild(thirdImage)
+  carouselDiv.appendChild(forthImage)
+  carouselDiv.appendChild(carouselRightButton)
+
+  firstImage.style.display = "block"
+
+  const ImagesArray = [
+    firstImage,
+    secondImage,
+    thirdImage,
+    forthImage,
+  ]
+
+  carouselLeftButton.addEventListener('click', () => {
+    var clickCount = event.detail
+    console.log(clickCount)
+    for(let i = 0; i < ImagesArray.length; i++){
+      if(clickCount === (i+1)){
+        console.log(ImagesArray[i])
+       ImagesArray[i+1].style.display = "block"
+       ImagesArray[i].style.display = "none"
+      }
+
+    }
+ 
+  })
+  carouselRightButton.addEventListener('click', () => {
+    var clickCount = event.detail
+  })
+
+  return carouselDiv
+}
+
+
+const carouselEntry = document.querySelector(".carousel-container")
+cardsEntry.appendChild(carouselCreator())
