@@ -20,30 +20,38 @@
 
 function carouselCreator(){
 
+  const firstImage = "./assets/carousel/mountains.jpeg"
+  const secondImage = "./assets/carousel/computer.jpeg"
+  const thirdImage = "./assets/carousel/trees.jpeg"
+  const forthImage = "./assets/carousel/turntable.jpeg"
+
   const carouselDiv = document.createElement('div')
   const carouselLeftButton = document.createElement('div')
-  const firstImage = document.createElement('img')
-  const secondImage = document.createElement('img')
-  const thirdImage = document.createElement('img')
-  const forthImage = document.createElement('img')
+  const images = document.createElement('img')
+  // const firstImage = document.createElement('img')
+  // const secondImage = document.createElement('img')
+  // const thirdImage = document.createElement('img')
+  // const forthImage = document.createElement('img')
   const carouselRightButton = document.createElement('div')
 
   carouselDiv.classList.add("carousel")
   carouselLeftButton.classList.add("left-button")
-  firstImage.src = "./assets/carousel/mountains.jpeg"
-  secondImage.src = "./assets/carousel/computer.jpeg"
-  thirdImage.src = "./assets/carousel/trees.jpeg"
-  forthImage.src = "./assets/carousel/turntable.jpeg"
+  images.src = firstImage
+  // firstImage.src = "./assets/carousel/mountains.jpeg"
+  // secondImage.src = "./assets/carousel/computer.jpeg"
+  // thirdImage.src = "./assets/carousel/trees.jpeg"
+  // forthImage.src = "./assets/carousel/turntable.jpeg"
   carouselRightButton.classList.add("right-button")
 
   carouselDiv.appendChild(carouselLeftButton)
-  carouselDiv.appendChild(firstImage)
-  carouselDiv.appendChild(secondImage)
-  carouselDiv.appendChild(thirdImage)
-  carouselDiv.appendChild(forthImage)
+  carouselDiv.appendChild(images)
+  // carouselDiv.appendChild(firstImage)
+  // carouselDiv.appendChild(secondImage)
+  // carouselDiv.appendChild(thirdImage)
+  // carouselDiv.appendChild(forthImage)
   carouselDiv.appendChild(carouselRightButton)
 
-  firstImage.style.display = "block"
+  images.style.display = "block"
 
   const ImagesArray = [
     firstImage,
@@ -51,22 +59,30 @@ function carouselCreator(){
     thirdImage,
     forthImage,
   ]
+  var clickCounter = 0
 
-  carouselLeftButton.addEventListener('click', () => {
-    var clickCount = event.detail
-    console.log(clickCount)
-    for(let i = 0; i < ImagesArray.length; i++){
-      if(clickCount === (i+1)){
-        console.log(ImagesArray[i])
-       ImagesArray[i+1].style.display = "block"
-       ImagesArray[i].style.display = "none"
-      }
 
-    }
- 
-  })
   carouselRightButton.addEventListener('click', () => {
-    var clickCount = event.detail
+    clickCounter += 1;
+   if(clickCounter >= ImagesArray.length){
+     clickCounter = 0
+     images.src = ImagesArray[clickCounter]
+   } else {
+    images.src = ImagesArray[clickCounter] 
+      
+  }
+  })
+  
+  
+  carouselLeftButton.addEventListener('click', () => {
+   clickCounter -= 1;
+   if(clickCounter < 0){
+     clickCounter = 3
+     images.src = ImagesArray[clickCounter]
+   } else {
+    images.src = ImagesArray[clickCounter] 
+      
+  }
   })
 
   return carouselDiv
