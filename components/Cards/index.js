@@ -29,6 +29,12 @@ axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
     const nodeArray = response.data.articles.node 
     const technologyArray = response.data.articles.technology 
 
+    // console.log(bootstrapArray)
+    // console.log(javascriptArray)
+    // console.log(jqueryArray)
+    // console.log(nodeArray)
+    // console.log(technologyArray)
+
     bootstrapArray.forEach(item => {
         const article = cardCreator(item)
         cardsEntry.appendChild(article)
