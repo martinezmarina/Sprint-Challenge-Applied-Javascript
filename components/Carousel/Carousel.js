@@ -43,11 +43,30 @@ function carouselCreator(){
   carouselDiv.appendChild(forthImage)
   carouselDiv.appendChild(carouselRightButton)
 
+  firstImage.style.display = "block"
+
+  const ImagesArray = [
+    firstImage,
+    secondImage,
+    thirdImage,
+    forthImage,
+  ]
+
   carouselLeftButton.addEventListener('click', () => {
-    
+    var clickCount = event.detail
+    console.log(clickCount)
+    for(let i = 0; i < ImagesArray.length; i++){
+      if(clickCount === (i+1)){
+        console.log(ImagesArray[i])
+       ImagesArray[i+1].style.display = "block"
+       ImagesArray[i].style.display = "none"
+      }
+
+    }
+ 
   })
   carouselRightButton.addEventListener('click', () => {
-
+    var clickCount = event.detail
   })
 
   return carouselDiv
